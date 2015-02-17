@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
     Student.find_by_id(session[:student_id])
   end
 
+  def authenticate
+    if not current_student
+      redirect_to login_path, notice:'Not signed in'
+    end
+  end
+
   helper_method :current_student
 
 end
